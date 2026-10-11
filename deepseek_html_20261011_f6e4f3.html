@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сантехник на час — установка сантехники с оплатой онлайн</title>
+<meta name="description" content="Профессиональная установка сантехники. Быстрый выезд, гарантия. Оплата онлайн через tome.ge.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1a1a1a;
+    line-height: 1.6;
+    background: #f7f9fc;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+  }
+  .logo { font-size: 22px; font-weight: 700; color: #0a66c2; }
+  .logo span { color: #1a1a1a; }
+  .phone { font-weight: 600; color: #1a1a1a; text-decoration: none; }
+
+  .hero {
+    background: linear-gradient(135deg, #0a66c2 0%, #084a8f 100%);
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 20px;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
+  .btn {
+    display: inline-block;
+    background: #fff;
+    color: #0a66c2;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    margin-left: 10px;
+  }
+
+  .section { padding: 70px 20px; }
+  .section h2 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .section-sub {
+    text-align: center;
+    color: #666;
+    margin-bottom: 50px;
+    font-size: 17px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  .service-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  .service-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+  .service-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #0a66c2;
+  }
+  .service-card p {
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+  .price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .how {
+    background: #fff;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .step { text-align: center; }
+  .step-num {
+    width: 60px;
+    height: 60px;
+    background: #0a66c2;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto 15px;
+  }
+  .step h4 { margin-bottom: 8px; font-size: 18px; }
+  .step p { color: #666; font-size: 15px; }
+
+  .pay-section {
+    background: linear-gradient(135deg, #0a66c2 0%, #084a8f 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .pay-section h2 { color: #fff; }
+  .pay-section p { margin-bottom: 30px; font-size: 17px; opacity: 0.95; }
+
+  .contact {
+    text-align: center;
+    background: #fff;
+  }
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .contact-item {
+    font-size: 17px;
+  }
+  .contact-item strong { display: block; color: #0a66c2; margin-bottom: 5px; }
+  .contact-item a { color: #1a1a1a; text-decoration: none; font-weight: 600; }
+
+  footer {
+    background: #1a1a1a;
+    color: #999;
+    text-align: center;
+    padding: 25px 20px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 16px; }
+    .btn { padding: 14px 28px; font-size: 16px; display: block; margin-bottom: 10px; }
+    .btn-outline { margin-left: 0; }
+    .section h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner container">
+    <div class="logo">Сантех<span>Сервис</span></div>
+    <a href="tel:+995555000000" class="phone">📞 +995 555 00-00-00</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Установка сантехники<br>быстро и с гарантией</h1>
+    <p>Профессиональный монтаж унитазов, раковин, смесителей, ванн и душевых кабин. Выезд в день заказа. Оплата онлайн через tome.ge.</p>
+    <a href="#pay" class="btn">Оплатить услугу</a>
+    <a href="#services" class="btn btn-outline">Услуги и цены</a>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <h2>Наши услуги</h2>
+    <p class="section-sub">Фиксированные цены. Без скрытых доплат.</p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🚽</div>
+        <h3>Установка унитаза</h3>
+        <p>Демонтаж старого, монтаж нового унитаза, подключение к водопроводу и канализации.</p>
+        <div class="price">от 80 GEL</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🚿</div>
+        <h3>Установка душевой кабины</h3>
+        <p>Сборка кабины, подключение смесителя, герметизация стыков, проверка слива.</p>
+        <div class="price">от 150 GEL</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🛁</div>
+        <h3>Установка ванны</h3>
+        <p>Монтаж акриловой или стальной ванны, подключение сифона и смесителя.</p>
+        <div class="price">от 120 GEL</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🚰</div>
+        <h3>Установка смесителя</h3>
+        <p>Замена или установка смесителя на кухне или в ванной. Быстро и аккуратно.</p>
+        <div class="price">от 40 GEL</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🧼</div>
+        <h3>Установка раковины</h3>
+        <p>Монтаж раковины, подключение к воде и канализации, установка сифона.</p>
+        <div class="price">от 70 GEL</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Ремонт и замена труб</h3>
+        <p>Замена гибкой подводки, устранение протечек, монтаж новых труб.</p>
+        <div class="price">от 50 GEL</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section how">
+  <div class="container">
+    <h2>Как это работает</h2>
+    <p class="section-sub">4 простых шага до готовой сантехники</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Заявка</h4>
+        <p>Звоните или пишите в WhatsApp / Telegram</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Согласование</h4>
+        <p>Уточняем задачу и называем точную цену</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Оплата онлайн</h4>
+        <p>Оплачиваете через tome.ge — безопасно и удобно</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Выезд мастера</h4>
+        <p>Мастер приезжает и выполняет работу в день заказа</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pay-section" id="pay">
+  <div class="container">
+    <h2>Оплата услуг онлайн</h2>
+    <p>Оплатите установку сантехники через защищённый сервис tome.ge.<br>Быстро, безопасно и с чеком.</p>
+    <!-- ЗАМЕНИ ССЫЛКУ НИЖЕ НА СВОЮ ССЫЛКУ ОТ TOME.GE -->
+    <a href="https://tome.ge/ТВОЯ_ССЫЛКА" target="_blank" rel="noopener" class="btn">
+      💳 Перейти к оплате
+    </a>
+  </div>
+</section>
+
+<section class="section contact">
+  <div class="container">
+    <h2>Свяжитесь с нами</h2>
+    <p class="section-sub">Ответим в течение 5 минут</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <strong>Телефон</strong>
+        <a href="tel:+995555000000">+995 555 00-00-00</a>
+      </div>
+      <div class="contact-item">
+        <strong>WhatsApp / Telegram</strong>
+        <a href="https://wa.me/995555000000" target="_blank">Написать</a>
+      </div>
+      <div class="contact-item">
+        <strong>Работаем</strong>
+        Ежедневно 9:00 – 21:00
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2025 СантехСервис. Все права защищены. Оплата через tome.ge
+  </div>
+</footer>
+
+</body>
+</html>
