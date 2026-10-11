@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Сантехник на час — установка сантехники с оплатой онлайн</title>
-<meta name="description" content="Профессиональная установка сантехники. Быстрый выезд, гарантия. Оплата онлайн через tome.ge.">
+<meta name="description" content="Профессиональная установка сантехники. Быстрый выезд, гарантия. Оплата онлайн картой.">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -38,17 +38,8 @@
     padding: 80px 20px;
     text-align: center;
   }
-  .hero h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-  .hero p {
-    font-size: 20px;
-    opacity: 0.95;
-    max-width: 700px;
-    margin: 0 auto 30px;
-  }
+  .hero h1 { font-size: 42px; margin-bottom: 20px; line-height: 1.2; }
+  .hero p { font-size: 20px; opacity: 0.95; max-width: 700px; margin: 0 auto 30px; }
   .btn {
     display: inline-block;
     background: #fff;
@@ -74,17 +65,8 @@
   }
 
   .section { padding: 70px 20px; }
-  .section h2 {
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  .section-sub {
-    text-align: center;
-    color: #666;
-    margin-bottom: 50px;
-    font-size: 17px;
-  }
+  .section h2 { font-size: 32px; text-align: center; margin-bottom: 15px; }
+  .section-sub { text-align: center; color: #666; margin-bottom: 50px; font-size: 17px; }
 
   .services-grid {
     display: grid;
@@ -102,29 +84,12 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
-  .service-icon {
-    font-size: 40px;
-    margin-bottom: 15px;
-  }
-  .service-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #0a66c2;
-  }
-  .service-card p {
-    color: #555;
-    font-size: 15px;
-    margin-bottom: 15px;
-  }
-  .price {
-    font-size: 22px;
-    font-weight: 700;
-    color: #1a1a1a;
-  }
+  .service-icon { font-size: 40px; margin-bottom: 15px; }
+  .service-card h3 { font-size: 20px; margin-bottom: 10px; color: #0a66c2; }
+  .service-card p { color: #555; font-size: 15px; margin-bottom: 15px; }
+  .price { font-size: 22px; font-weight: 700; color: #1a1a1a; }
 
-  .how {
-    background: #fff;
-  }
+  .how { background: #fff; }
   .steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -156,11 +121,31 @@
   }
   .pay-section h2 { color: #fff; }
   .pay-section p { margin-bottom: 30px; font-size: 17px; opacity: 0.95; }
-
-  .contact {
-    text-align: center;
-    background: #fff;
+  .pay-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
   }
+  .pay-buttons .btn {
+    background: #fff;
+    color: #0a66c2;
+    min-width: 240px;
+  }
+  .pay-buttons .btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+  }
+  #pay-status {
+    margin-top: 25px;
+    font-size: 15px;
+    min-height: 20px;
+    word-break: break-word;
+  }
+
+  .contact { text-align: center; background: #fff; }
   .contact-info {
     display: flex;
     justify-content: center;
@@ -168,9 +153,7 @@
     flex-wrap: wrap;
     margin-top: 30px;
   }
-  .contact-item {
-    font-size: 17px;
-  }
+  .contact-item { font-size: 17px; }
   .contact-item strong { display: block; color: #0a66c2; margin-bottom: 5px; }
   .contact-item a { color: #1a1a1a; text-decoration: none; font-weight: 600; }
 
@@ -188,6 +171,7 @@
     .btn { padding: 14px 28px; font-size: 16px; display: block; margin-bottom: 10px; }
     .btn-outline { margin-left: 0; }
     .section h2 { font-size: 24px; }
+    .pay-buttons .btn { width: 100%; }
   }
 </style>
 </head>
@@ -203,7 +187,7 @@
 <section class="hero">
   <div class="container">
     <h1>Установка сантехники<br>быстро и с гарантией</h1>
-    <p>Профессиональный монтаж унитазов, раковин, смесителей, ванн и душевых кабин. Выезд в день заказа. Оплата онлайн через tome.ge.</p>
+    <p>Профессиональный монтаж унитазов, раковин, смесителей, ванн и душевых кабин. Выезд в день заказа. Оплата онлайн картой в долларах США.</p>
     <a href="#pay" class="btn">Оплатить услугу</a>
     <a href="#services" class="btn btn-outline">Услуги и цены</a>
   </div>
@@ -219,42 +203,42 @@
         <div class="service-icon">🚽</div>
         <h3>Установка унитаза</h3>
         <p>Демонтаж старого, монтаж нового унитаза, подключение к водопроводу и канализации.</p>
-        <div class="price">от 80 GEL</div>
+        <div class="price">$30</div>
       </div>
 
       <div class="service-card">
         <div class="service-icon">🚿</div>
         <h3>Установка душевой кабины</h3>
         <p>Сборка кабины, подключение смесителя, герметизация стыков, проверка слива.</p>
-        <div class="price">от 150 GEL</div>
+        <div class="price">$55</div>
       </div>
 
       <div class="service-card">
         <div class="service-icon">🛁</div>
         <h3>Установка ванны</h3>
         <p>Монтаж акриловой или стальной ванны, подключение сифона и смесителя.</p>
-        <div class="price">от 120 GEL</div>
+        <div class="price">$45</div>
       </div>
 
       <div class="service-card">
         <div class="service-icon">🚰</div>
         <h3>Установка смесителя</h3>
         <p>Замена или установка смесителя на кухне или в ванной. Быстро и аккуратно.</p>
-        <div class="price">от 40 GEL</div>
+        <div class="price">$15</div>
       </div>
 
       <div class="service-card">
         <div class="service-icon">🧼</div>
         <h3>Установка раковины</h3>
         <p>Монтаж раковины, подключение к воде и канализации, установка сифона.</p>
-        <div class="price">от 70 GEL</div>
+        <div class="price">$25</div>
       </div>
 
       <div class="service-card">
         <div class="service-icon">🔧</div>
         <h3>Ремонт и замена труб</h3>
         <p>Замена гибкой подводки, устранение протечек, монтаж новых труб.</p>
-        <div class="price">от 50 GEL</div>
+        <div class="price">$20</div>
       </div>
 
     </div>
@@ -279,7 +263,7 @@
       <div class="step">
         <div class="step-num">3</div>
         <h4>Оплата онлайн</h4>
-        <p>Оплачиваете через tome.ge — безопасно и удобно</p>
+        <p>Оплачиваете картой в долларах через защищённый сервис</p>
       </div>
       <div class="step">
         <div class="step-num">4</div>
@@ -293,11 +277,16 @@
 <section class="section pay-section" id="pay">
   <div class="container">
     <h2>Оплата услуг онлайн</h2>
-    <p>Оплатите установку сантехники через защищённый сервис tome.ge.<br>Быстро, безопасно и с чеком.</p>
-    <!-- ЗАМЕНИ ССЫЛКУ НИЖЕ НА СВОЮ ССЫЛКУ ОТ TOME.GE -->
-    <a href="https://tome.ge/ТВОЯ_ССЫЛКА" target="_blank" rel="noopener" class="btn">
-      💳 Перейти к оплате
-    </a>
+    <p>Оплата картой в долларах США через защищённый сервис tome.ge.<br>Быстро, безопасно и с чеком.</p>
+    <div class="pay-buttons">
+      <button onclick="payNow('30.00', 'Установка унитаза', this)" class="btn">🚽 Оплатить $30</button>
+      <button onclick="payNow('55.00', 'Установка душевой кабины', this)" class="btn">🚿 Оплатить $55</button>
+      <button onclick="payNow('45.00', 'Установка ванны', this)" class="btn">🛁 Оплатить $45</button>
+      <button onclick="payNow('15.00', 'Установка смесителя', this)" class="btn">🚰 Оплатить $15</button>
+      <button onclick="payNow('25.00', 'Установка раковины', this)" class="btn">🧼 Оплатить $25</button>
+      <button onclick="payNow('20.00', 'Ремонт и замена труб', this)" class="btn">🔧 Оплатить $20</button>
+    </div>
+    <p id="pay-status"></p>
   </div>
 </section>
 
@@ -324,9 +313,43 @@
 
 <footer>
   <div class="container">
-    © 2025 СантехСервис. Все права защищены. Оплата через tome.ge
+    © 2026 СантехСервис. Все права защищены. Оплата через tome.ge
   </div>
 </footer>
+
+<script>
+async function payNow(amount, description, btn) {
+  const status = document.getElementById('pay-status');
+  const originalText = btn.innerText;
+  btn.innerText = "Создаём платёж...";
+  btn.disabled = true;
+  status.style.color = "#fff";
+  status.innerText = "";
+
+  try {
+    const response = await fetch("https://tome-payment-worker.stepansuhomlinov70.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: amount, description: description }),
+    });
+
+    const data = await response.json();
+    console.log("Ответ tome.ge:", data);
+
+    if (data.confirmation && data.confirmation.confirmation_url) {
+      window.location.href = data.confirmation.confirmation_url;
+    } else {
+      status.innerText = "Ошибка: " + (data.description || JSON.stringify(data));
+      btn.innerText = originalText;
+      btn.disabled = false;
+    }
+  } catch (err) {
+    status.innerText = "Ошибка соединения с сервером оплаты: " + err.message;
+    btn.innerText = originalText;
+    btn.disabled = false;
+  }
+}
+</script>
 
 </body>
 </html>
