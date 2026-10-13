@@ -102,6 +102,8 @@ nav a:hover{color:#fff}
 .pay-form select{width:100%;padding:13px 14px;font:inherit;border:1px solid #b7c2ce;background:#fff;color:var(--ink);border-radius:0}
 .pay-form .btn{width:100%;text-align:center}
 .btn:disabled{opacity:.6;cursor:wait}
+#pay-status.ok{color:#1d6b3a}
+.pay-note{font-size:13px;color:var(--steel)}
 #pay-status{min-height:22px;font-size:14.5px;color:#a32020;word-break:break-word}
 
 /* contact */
@@ -256,7 +258,7 @@ footer{background:var(--ink);color:#8ea3b8;font-size:14px;padding:30px 0}
     <div class="paywrap">
       <div>
         <h2>Pay Online</h2>
-        <p>Choose the service you agreed on and pay by card in US dollars through the secure tome.ge service. A receipt is sent after payment.</p>
+        <p>Choose the service you agreed on and pay by card in US dollars through our secure payment partner. A receipt is sent after payment.</p>
       </div>
       <div class="pay-form">
         <div>
@@ -265,6 +267,7 @@ footer{background:var(--ink);color:#8ea3b8;font-size:14px;padding:30px 0}
         </div>
         <button class="btn" id="paybtn" type="button">Pay Now</button>
         <p id="pay-status" role="status" aria-live="polite"></p>
+        <p class="pay-note">You will be redirected to a secure checkout. The payment partner may ask you to confirm your email and phone number.</p>
       </div>
     </div>
   </div>
@@ -284,65 +287,75 @@ footer{background:var(--ink);color:#8ea3b8;font-size:14px;padding:30px 0}
 <footer>
   <div class="wrap foot">
     <span><b>HELTON PLUMBING, LLC</b></span>
-    <span>© 2026 HELTON PLUMBING, LLC. All rights reserved. Payments via tome.ge</span>
+    <span>© 2026 HELTON PLUMBING, LLC. All rights reserved. Online payments by Ivno</span>
   </div>
 </footer>
 
 <script>
+// URL of your deployed Cloudflare Worker (see worker.js)
+const WORKER_URL = "https://helton-ivno.YOUR-SUBDOMAIN.workers.dev";
+
+// [id, name, price]. IDs and prices must match SERVICES in worker.js
+// (the worker is the source of truth for the amount actually charged).
 const SERVICES = [
-  ["Сonsultation via call", 3],
-  ["Service call and diagnostics", 30],
-  ["Supply line and trap replacement", 40],
-  ["Faucet installation", 55],
-  ["Sink or tub drain clearing", 65],
-  ["Dishwasher or washing machine hookup", 75],
-  ["Leak repair", 85],
-  ["Sink installation", 90],
-  ["Water pressure test", 95],
-  ["Toilet installation", 120],
-  ["Garbage disposal installation", 130],
-  ["Main drain snaking", 140],
-  ["Pressure regulator installation", 160],
-  ["Pipe section replacement up to 10 ft", 180],
-  ["Shower enclosure installation", 220],
-  ["Bathtub installation", 260],
-  ["Water heater installation, 40–50 gal", 300]
+  ["call-diagnostics", "Service call and diagnostics", 30],
+  ["supply-trap", "Supply line and trap replacement", 40],
+  ["faucet", "Faucet installation", 55],
+  ["drain-clearing", "Sink or tub drain clearing", 65],
+  ["appliance-hookup", "Dishwasher or washing machine hookup", 75],
+  ["leak-repair", "Leak repair", 85],
+  ["sink-install", "Sink installation", 90],
+  ["pressure-test", "Water pressure test", 95],
+  ["toilet", "Toilet installation", 120],
+  ["disposal", "Garbage disposal installation", 130],
+  ["main-snaking", "Main drain snaking", 140],
+  ["regulator", "Pressure regulator installation", 160],
+  ["pipe-section", "Pipe section replacement up to 10 ft", 180],
+  ["shower", "Shower enclosure installation", 220],
+  ["bathtub", "Bathtub installation", 260],
+  ["water-heater", "Water heater installation, 40\u201350 gal", 300]
 ];
 
 const sel = document.getElementById('svc');
-SERVICES.forEach(([name, price], i) => {
+const status = document.getElementById('pay-status');
+
+SERVICES.forEach(([id, name, price]) => {
   const o = document.createElement('option');
-  o.value = i;
-  o.textContent = name + " — $" + price;
+  o.value = id;
+  o.textContent = name + " \u2014 $" + price;
   sel.appendChild(o);
 });
 
 document.getElementById('paybtn').addEventListener('click', function () {
-  const [name, price] = SERVICES[sel.value];
-  payNow(price.toFixed(2), name, this);
+  payNow(sel.value, this);
 });
 
-async function payNow(amount, description, btn) {
-  const status = document.getElementById('pay-status');
+// Shown after the customer returns from checkout. The real confirmation
+// comes from the server-side webhook, not from this redirect.
+if (new URLSearchParams(location.search).get('paid') === '1') {
+  status.className = 'ok';
+  status.innerText = "Thank you! Your payment is being confirmed. We will contact you shortly.";
+}
+
+async function payNow(serviceId, btn) {
   const originalText = btn.innerText;
   btn.innerText = "Creating payment...";
   btn.disabled = true;
+  status.className = '';
   status.innerText = "";
 
   try {
-    const response = await fetch("https://tome-payment-worker.stepansuhomlinov70.workers.dev", {
+    const response = await fetch(WORKER_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: amount, description: description }),
+      body: JSON.stringify({ service_id: serviceId }),
     });
-
     const data = await response.json();
-    console.log("tome.ge response:", data);
 
-    if (data.confirmation && data.confirmation.confirmation_url) {
-      window.location.href = data.confirmation.confirmation_url;
+    if (data.payment_url) {
+      window.location.href = data.payment_url;
     } else {
-      status.innerText = "Error: " + (data.description || JSON.stringify(data));
+      status.innerText = "Error: " + (data.error || "Could not create payment");
       btn.innerText = originalText;
       btn.disabled = false;
     }
